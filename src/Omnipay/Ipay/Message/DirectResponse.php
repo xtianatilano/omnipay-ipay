@@ -7,9 +7,9 @@ use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
- * Dummy Response
+ * Direct Response
  */
-class Response extends AbstractResponse implements RedirectResponseInterface
+class DirectResponse extends AbstractResponse implements RedirectResponseInterface
 {
     protected $redirectUrl;
 

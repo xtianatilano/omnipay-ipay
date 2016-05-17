@@ -3,7 +3,7 @@
 namespace Omnipay\Ipay;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Ipay\Message\AuthorizeRequest;
+use Omnipay\Ipay\Message\DirectRequest;
 
 /**
  * Dummy Gateway
@@ -40,7 +40,7 @@ class Gateway extends AbstractGateway
 
     public function authorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Ipay\Message\AuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\Ipay\Message\DirectRequest', $parameters);
     }
 
     public function purchase(array $parameters = array())
