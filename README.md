@@ -3,7 +3,7 @@
 **Ipay driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Dummy support for Omnipay.
+processing library for PHP 5.3+. This package implements Ipay support for Omnipay.
 
 ## Installation
 
