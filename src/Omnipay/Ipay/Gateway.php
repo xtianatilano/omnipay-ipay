@@ -3,7 +3,7 @@
 namespace Omnipay\Ipay;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Ipay\Message\DirectRequest;
+use Omnipay\Ipay\Message\RedirectRequest;
 
 /**
  * Dummy Gateway
@@ -38,13 +38,13 @@ class Gateway extends AbstractGateway
             );
     }
 
-    public function authorize(array $parameters = array())
+    public function redirectRequest(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Ipay\Message\DirectRequest', $parameters);
+        return $this->createRequest('\Omnipay\Ipay\Message\RedirectRequest', $parameters);
     }
 
-    public function purchase(array $parameters = array())
+    public function redirect(array $parameters = array())
     {
-        return $this->authorize($parameters);
+        return $this->redirectRequest($parameters);
     }
 }

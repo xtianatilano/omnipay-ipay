@@ -7,7 +7,7 @@ use Omnipay\Common\Message\AbstractRequest;
 /**
  * Dummy Authorize Request
  */
-class DirectRequest extends AbstractRequest
+class RedirectRequest extends AbstractRequest
 {
 
     protected $liveEndpoint = 'https://pay.ips.com.cn';
@@ -151,7 +151,7 @@ class DirectRequest extends AbstractRequest
         $url = $this->getEndpoint().'/ipayment.aspx';
         $httpResponse = $this->httpClient->post($url, null, $data)->send();
 
-        return new DirectResponse($this, $data, $url, $httpResponse->getStatusCode());
+        return new RedirectResponse($this, $data, $url, $httpResponse->getStatusCode());
     }
 
     public function getEndpoint()

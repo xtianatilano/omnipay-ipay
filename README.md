@@ -1,10 +1,6 @@
-# Omnipay: Dummy
+# Omnipay: Ipay
 
-**Dummy driver for the Omnipay PHP payment processing library**
-
-[![Build Status](https://travis-ci.org/thephpleague/omnipay-dummy.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-dummy)
-[![Latest Stable Version](https://poser.pugx.org/omnipay/dummy/version.png)](https://packagist.org/packages/omnipay/dummy)
-[![Total Downloads](https://poser.pugx.org/omnipay/dummy/d/total.png)](https://packagist.org/packages/omnipay/dummy)
+**Ipay driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Dummy support for Omnipay.
@@ -17,8 +13,15 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/dummy": "~2.0"
-    }
+                "xtianproject/omnipay-ipay": "~1.0@dev"
+    },
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/xtianproject/omnipay-ipay"
+        }
+    ]
 }
 ```
 
@@ -31,20 +34,28 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* Dummy
+* Ipay
 
-For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
-repository.
+For general usage instructions:
 
-## Support
+use Omnipay\Omnipay;
 
-If you are having general issues with Omnipay, we suggest posting on
-[Stack Overflow](http://stackoverflow.com/). Be sure to add the
-[omnipay tag](http://stackoverflow.com/questions/tagged/omnipay) so it can be easily found.
+$gateway = Omnipay::create('Ipay');
 
-If you want to keep up to date with release anouncements, discuss ideas for the project,
-or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
-you can subscribe to.
+$formData = [
+    'merchantCode' => '',
+    'billNumber' => '',
+    'amount' => '',
+    'currency' => '',
+    'gatewayType' => '',
+    'languageCode' => '',
+    'returnUrl' => '',
+    'orderEncodeType' => '',
+    'retEncodeType' =>  '',
+    'retType' => '',
+    'notifyUrl' => $this->server_urls[1],
+    'merchantKey' => (string) $transaction->Transactions->account_name,
+    'testMode' => true,
+    ];
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/thephpleague/omnipay-dummy/issues),
-or better yet, fork the library and submit a pull request.
+$response = $gateway->purchase(array('amount' => '10.00', 'currency' => 'USD', 'card' => $formData))->send();
