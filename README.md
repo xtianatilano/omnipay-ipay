@@ -38,6 +38,7 @@ The following gateways are provided by this package:
 
 For general usage instructions:
 
+```json
 use Omnipay\Omnipay;
 
 $gateway = Omnipay::create('Ipay');
@@ -58,4 +59,9 @@ $formData = [
     'testMode' => true,
     ];
 
-$response = $gateway->purchase(array('amount' => '10.00', 'currency' => 'USD', 'card' => $formData))->send();
+$response = $gateway->redirect($formData)->send();
+
+if ($response->isSuccessful()) {
+    $response->redirect();
+}
+```
