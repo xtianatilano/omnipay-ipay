@@ -38,25 +38,25 @@ The following gateways are provided by this package:
 
 For general usage instructions:
 
-```json
+```php
 use Omnipay\Omnipay;
 
 $gateway = Omnipay::create('Ipay');
 
 $formData = [
-    'merchantCode' => '',
-    'billNumber' => '',
-    'amount' => '',
-    'currency' => '',
-    'gatewayType' => '',
-    'languageCode' => '',
-    'returnUrl' => '',
-    'orderEncodeType' => '',
-    'retEncodeType' =>  '',
-    'retType' => '',
-    'notifyUrl' => $this->server_urls[1],
-    'merchantKey' => (string) $transaction->Transactions->account_name,
-    'testMode' => true,
+    "merchantCode" => "",
+    "billNumber" => "",
+    "amount" => "",
+    "currency" => "",
+    "gatewayType" => "",
+    "languageCode" => "",
+    "returnUrl" => "",
+    "orderEncodeType" => "",
+    "retEncodeType" =>  "",
+    "retType" => '',
+    "notifyUrl" => "",
+    "merchantKey" => "",
+    "testMode" => true,
     ];
 
 $response = $gateway->redirect($formData)->send();
