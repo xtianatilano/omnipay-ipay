@@ -1,26 +1,47 @@
 <?php
 
-namespace Omnipay\Dummy\Message;
+namespace Omnipay\Ipay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\RequestInterface;
+use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * Dummy Response
  */
-class Response extends AbstractResponse
+class Response extends AbstractResponse implements RedirectResponseInterface
 {
+    protected $redirectUrl;
+
+    public function __construct(RequestInterface $request, $data, $redirectUrl, $status)
+    {
+        parent::__construct($request, $data);
+        $this->redirectUrl = $redirectUrl;
+        $this->status = $status;
+    }
+
     public function isSuccessful()
     {
-        return isset($this->data['success']) && $this->data['success'];
+        return 200 === $this->status;
     }
 
-    public function getTransactionReference()
+    public function isRedirect()
     {
-        return isset($this->data['reference']) ? $this->data['reference'] : null;
+        return true;
     }
 
-    public function getMessage()
+    public function getRedirectUrl()
     {
-        return isset($this->data['message']) ? $this->data['message'] : null;
+        return $this->redirectUrl;
+    }
+
+    public function getRedirectMethod()
+    {
+        return 'POST';
+    }
+
+    public function getRedirectData()
+    {
+        return $this->data;
     }
 }

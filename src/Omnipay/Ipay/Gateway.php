@@ -26,7 +26,16 @@ class Gateway extends AbstractGateway
 
     public function getDefaultParameters()
     {
-        return array();
+        return array(
+            'merchantCode' => '',
+            'billNumber' => '',
+            'gatewayType' => '',
+            'languageCode' => '',
+            'orderEncodeType' => '',
+            'retEncodeType' => '',
+            'retType' => '',
+            'testMode' => false,
+            );
     }
 
     public function authorize(array $parameters = array())
